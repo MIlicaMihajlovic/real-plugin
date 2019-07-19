@@ -47,7 +47,7 @@ function create_real_cpt() {
 
  add_action('init', 'create_real_cpt');
 
-//Register custom taxonomies Location and Type non-hierarchical
+//Register custom taxonomies Location and Type, non-hierarchical
 function create_real_taxonomies() {
 
     //Register taxonomy Location
@@ -127,7 +127,7 @@ function estates_rewrite_rule($wp_rewrite) {
     $post_type = 'real_estate';
 
     foreach( $terms as $term ) {
-        $rules[ 'estates/' .$term->slug ] = 'index.php?post_type=' .$post_type. '&real_estate=$matches[1]&name=$matches[1]';
+        $rules[ 'estates/' .$term->slug. '/([a-zA-Z0-9-]+)/?$' ] = 'index.php?post_type=' .$post_type. '&name=$matches[1]';
     }
 
     //Add rules to class wp_rewrite
@@ -140,15 +140,15 @@ add_filter('generate_rewrite_rules', 'estates_rewrite_rule');
 //Save new post with correct link
 function change_link( $permalink, $post ) {
 
-    if( $post->post_type == 'real-estate' ) {
+    if( $post->post_type == 'real_estate' ) {
 
-        $estates_terms = get_the_terms($post, 'type');
+        $estates_terms = get_the_terms($post->ID, 'type');
         $term_slug = '';
 
         if( !empty($estates_terms) ) {
 
             foreach( $estates_terms as $term ) {
-                
+
                 if($term->slug == 'featured') {
                     continue;
                 }

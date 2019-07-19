@@ -19,6 +19,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpServers">
+    <servers>
+      <server host="realplugin" id="a6a58ac7-b558-4a52-8949-ede9367a2789" name="realplugin" />
+    </servers>
+  </component>
   <component name="ProjectId" id="1OBaJ2ayaBquBPBx4fWm65gqIp2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
@@ -60,7 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1563453741802</updated>
       <workItem from="1563453744863" duration="3929000" />
-      <workItem from="1563519850229" duration="16424000" />
+      <workItem from="1563519850229" duration="24190000" />
     </task>
     <servers />
   </component>
