@@ -37,7 +37,9 @@ function create_real_cpt() {
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
-        'supports'           => array( 'title', 'image', 'author', 'thumbnail', 'revisions', 'custom-fields' )
+        'supports'           => array( 'title', 'image', 'author', 'thumbnail', 'revisions', 'custom-fields' ),
+        'taxonomies'         => array( 'location', 'type' ),
+        'rewrite'            => array('slug' => 'estates')
     );
 
     register_post_type( 'real_estate', $args );
@@ -73,7 +75,8 @@ function create_real_taxonomies() {
         'show_ui'               => true,
         'show_admin_column'     => true,
         'update_count_callback' => '_update_post_term_count',
-        'query_var'             => true
+        'query_var'             => true,
+        'rewrite'               => array( 'slug' => 'location', 'with_front' => false)
     );
 
     register_taxonomy('location', 'real_estate', $args);
@@ -103,18 +106,68 @@ function create_real_taxonomies() {
         'show_ui'               => true,
         'show_admin_column'     => true,
         'update_count_callback' => '_update_post_term_count',
-        'query_var'             => true
+        'query_var'             => true,
+        'rewrite'               => array('slug' => 'estates')
     );
 
-    register_taxonomy('type', 'real_estate', $args);
+    register_taxonomy('type', array('real_estate'), $args);
 }
 
 add_action('init', 'create_real_taxonomies');
 
+//Rewrite rules for cpt/taxonomy/%cpt%
+function estates_rewrite_rule($wp_rewrite) {
+
+    $rules = array();
+    $terms = get_terms( array(
+       'taxonomy' => 'type',
+       'hide_empty' => false
+    ));
+
+    $post_type = 'real_estate';
+
+    foreach( $terms as $term ) {
+        $rules[ 'estates/' .$term->slug ] = 'index.php?post_type=' .$post_type. '&real_estate=$matches[1]&name=$matches[1]';
+    }
+
+    //Add rules to class wp_rewrite
+    $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+}
+
+//Hook on filter to rewrite rules
+add_filter('generate_rewrite_rules', 'estates_rewrite_rule');
+
+//Save new post with correct link
+function change_link( $permalink, $post ) {
+
+    if( $post->post_type == 'real-estate' ) {
+
+        $estates_terms = get_the_terms($post, 'type');
+        $term_slug = '';
+
+        if( !empty($estates_terms) ) {
+
+            foreach( $estates_terms as $term ) {
+                
+                if($term->slug == 'featured') {
+                    continue;
+                }
+                $term_slug = $term->slug;
+                break;
+            }
+        }
+        $permalink = get_home_url() .'/estates/' .$term_slug. '/' .$post->post_name;
+    }
+    return $permalink;
+}
+
+add_filter('post_type_link', 'change_link', 10, 2);
+
+
 //Add field for taxonomies
 if( function_exists('acf_add_local_field_group') ):
 
-//Add custom fields through PHP
+//Add custom fields through PHP and set taxonomies to single term and required
     acf_add_local_field_group(array(
         'key' => 'group_5d317fad8c61f',
         'title' => 'CPT:Real Estate',
