@@ -5,6 +5,10 @@
 
  */
 
+//Constants for path
+//define( 'MY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+//define( 'MY_PLUGIN_TEMPLATE_DIR', MY_PLUGIN_DIR . '/templates/' );
+
 //Register CPT Real Estate
 function create_real_cpt() {
     $labels = array(
@@ -280,3 +284,56 @@ if( function_exists('acf_add_local_field_group') ):
     ));
 
 endif;
+
+//Locate the template
+function real_locate_template( $template_name, $template_path = '', $default_path = '' ) {
+    // Set variable to search in the templates folder of theme.
+    if ( ! $template_path ) :
+        $template_path = 'templates/';
+    endif;
+    // Set default plugin templates path.
+    if ( ! $default_path ) :
+        $default_path = plugin_dir_path( __FILE__ ) . 'templates/'; // Path to the template folder
+    endif;
+    // Search template file in theme folder.
+    $template = locate_template( array(
+        $template_path . $template_name,
+        $template_name
+    ) );
+    // Get plugins template file.
+    if ( ! $template ) :
+        $template = $default_path . $template_name;
+    endif;
+    return apply_filters( 'real_locate_template', $template, $template_name, $template_path, $default_path );
+}
+//Get the template
+function real_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
+    if ( is_array( $args ) && isset( $args ) ) :
+        extract( $args );
+    endif;
+    $template_file = real_locate_template( $template_name, $template_path, $default_path );
+    if ( ! file_exists( $template_file ) ) :
+        _doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $template_file ), '1.0.0' );
+        return;
+    endif;
+    include $template_file;
+}
+
+//Template loader
+function real_template_loader( $template ) {
+    $find = array();
+    $file = '';
+    if( is_singular() ):
+        $file = 'single-real-estate.php';
+    elseif( is_tax() ):
+        $file = 'archive-real-estate.php';
+    endif;
+    if ( file_exists( real_locate_template( $file ) ) ) :
+        $template = real_locate_template( $file );
+    endif;
+    return $template;
+}
+add_filter( 'template_include', 'real_template_loader' );
+
+
+

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real-estate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/single-real-estate.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" afterDir="false" />
     </list>
@@ -66,7 +68,8 @@
       <option name="presentableId" value="Default" />
       <updated>1563453741802</updated>
       <workItem from="1563453744863" duration="3929000" />
-      <workItem from="1563519850229" duration="24190000" />
+      <workItem from="1563519850229" duration="25686000" />
+      <workItem from="1563779230210" duration="24012000" />
     </task>
     <servers />
   </component>
