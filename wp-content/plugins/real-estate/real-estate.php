@@ -331,10 +331,27 @@ function real_template_loader( $template ) {
 
 add_filter( 'template_include', 'real_template_loader' );
 
-//prevent field to be render in page
+//Check if current user administrator or author of post
+function all_acf_prepare_field( $field ) {
+    if ( $field['name'] == 'title' && $field['name'] == 'subtitle' && $field['name'] == 'gallery' ) {
+        return false;
+    }
+
+    return $field;
+}
+
+add_filter( 'acf/prepare_field', 'all_acf_prepare_field' );
+
+//Check is it admin page
+if( ! is_admin() ) {
+
+//add filter from functions, prevent image field to render
+    add_filter( 'acf/prepare_field/name=gallery', 'my_acf_prepare_field' );
+}
+
+//prevent field gallery to be render in page
 function my_acf_prepare_field( $field ) {
     return false;
 }
 
-//add filter from functions, prevent image field to render
-add_filter( 'acf/prepare_field/name=gallery', 'my_acf_prepare_field' );
+

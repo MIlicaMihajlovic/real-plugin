@@ -59,9 +59,13 @@ get_header(); ?>
                         echo join( ',', $out );
                     }
 
-                    acf_form( array(
-                       'post_title' => true
-                    ));
+                    if ( get_current_user_id() == $post->post_author || current_user_can( 'update_core' ) ) {
+
+                        acf_form(array(
+                            'post_title' => true
+                        ));
+
+                    }
 
                     // If comments are open or we have at least one comment, load up the comment template.
                     if ( comments_open() || get_comments_number() ) :
