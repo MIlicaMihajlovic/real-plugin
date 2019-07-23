@@ -312,6 +312,7 @@ function real_template_loader( $template ) {
 
     global $post;
 
+    //If it's not real estate give back template
     if ( $post->post_type !== 'real_estate' ) {
         return $template;
     }
@@ -329,3 +330,11 @@ function real_template_loader( $template ) {
 }
 
 add_filter( 'template_include', 'real_template_loader' );
+
+//prevent field to be render in page
+function my_acf_prepare_field( $field ) {
+    return false;
+}
+
+//add filter from functions, prevent image field to render
+add_filter( 'acf/prepare_field/name=gallery', 'my_acf_prepare_field' );

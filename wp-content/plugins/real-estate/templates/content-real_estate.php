@@ -10,6 +10,9 @@
  * @version 1.0
  */
 
+//Save post
+acf_form_head();
+
 get_header(); ?>
 
     <div class="wrap">
@@ -32,6 +35,33 @@ get_header(); ?>
 
                     echo '<h3>' . $subtitle . '</h3>';
                     echo '<img src="' . $gallery . '">';
+
+                    //display taxonomy-location and link to that taxonomy
+                    $location_terms = get_the_terms( $post->ID, 'location' );
+                    //var_dump($terms);
+                    if ( $location_terms ) {
+                        foreach ( $location_terms as $location_term ) {
+                            $output[] = '<a class="' . $location_term->slug . '" href="' . get_term_link( $location_term->slug, 'location' ) . '">' . $location_term->name . '</a>';
+
+                        }
+                        echo '</br>';
+                        echo join( ',', $output );
+                    }
+
+                    //display taxonomy-type and link to that taxonomy
+                    $type_terms = get_the_terms( $post->ID, 'type' );
+                    if ( $type_terms ) {
+                        foreach ( $type_terms as $type_term ) {
+                            $out[] = '<a class="' . $type_term->slug . '" href="' . get_term_link( $type_term->slug, 'type' ) . '">' . $type_term->name . '</a>';
+
+                        }
+                        echo '</br>';
+                        echo join( ',', $out );
+                    }
+
+                    acf_form( array(
+                       'post_title' => true
+                    ));
 
                     // If comments are open or we have at least one comment, load up the comment template.
                     if ( comments_open() || get_comments_number() ) :
