@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real-estate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/single-real-estate.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real_estate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/single-real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/content-real_estate.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +32,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wp-content/plugins/real-estate/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -42,6 +42,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\realplugin\wp-content\plugins\real-estate\templates" />
+      <recent name="C:\wamp64\www\realplugin\wp-content\themes\twentyseventeen" />
       <recent name="C:\wamp64\www\realplugin" />
     </key>
   </component>
@@ -69,7 +71,8 @@
       <updated>1563453741802</updated>
       <workItem from="1563453744863" duration="3929000" />
       <workItem from="1563519850229" duration="25686000" />
-      <workItem from="1563779230210" duration="24012000" />
+      <workItem from="1563779230210" duration="24568000" />
+      <workItem from="1563865577003" duration="5016000" />
     </task>
     <servers />
   </component>
