@@ -312,7 +312,7 @@ function real_template_loader( $template ) {
 
     global $post;
 
-    //If it's not real estate give back template
+    //If it's not real estate post type give back template
     if ( $post->post_type !== 'real_estate' ) {
         return $template;
     }
@@ -331,27 +331,33 @@ function real_template_loader( $template ) {
 
 add_filter( 'template_include', 'real_template_loader' );
 
-//Check if current user administrator or author of post
-function all_acf_prepare_field( $field ) {
-    if ( $field['name'] == 'title' && $field['name'] == 'subtitle' && $field['name'] == 'gallery' ) {
-        return false;
-    }
+//Locate script.js
+function real_estate_enqueue_scripts($hook) {
 
-    return $field;
+    // define script url to js
+    $script_url = plugins_url( '/assets/js/real-estate.js', __FILE__ );
+
+    // enqueue script
+    wp_enqueue_script( 'real-estate', $script_url, array( 'jquery' ) );
+
+    //wp_localize_script array to pass values
 }
 
-add_filter( 'acf/prepare_field', 'all_acf_prepare_field' );
+add_action('wp_enqueue_scripts', 'real_estate_enqueue_scripts');
 
-//Check is it admin page
-if( ! is_admin() ) {
-
-//add filter from functions, prevent image field to render
-    add_filter( 'acf/prepare_field/name=gallery', 'my_acf_prepare_field' );
+//Handling function for ajax
+function prefix_cf() {
+//postujemo podatke do baze global $wpdb
+//ehujemo json response
+//wp_die() terminate and return response
 }
 
-//prevent field gallery to be render in page
-function my_acf_prepare_field( $field ) {
-    return false;
-}
+//hook for un logged user
+add_action('wp_ajax_nopriv_prefix_cf', 'prefix_cf');
+//hook for logged in user
+add_action('wp_ajax_prefix_cf', 'prefix_cf');
+
+
+
 
 

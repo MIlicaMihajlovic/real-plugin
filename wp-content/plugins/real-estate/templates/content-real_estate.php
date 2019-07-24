@@ -25,48 +25,73 @@ get_header(); ?>
                     the_post();
 
                     get_template_part( 'template-parts/post/content', get_post_format() );
+                 ?>
 
-                    //display fields subtitle and image
-                    $acf_fields = get_fields();
+                <!--Display data-->
+                <div>
+                    <?php
+                        //display fields subtitle and image
+                        $acf_fields = get_fields();
 
-                    $gallery = $acf_fields['gallery']['sizes']['thumbnail'];
+                        $gallery = $acf_fields['gallery']['sizes']['thumbnail'];
 
-                    $subtitle = $acf_fields['subtitle'];
+                        $subtitle = $acf_fields['subtitle'];
 
-                    echo '<h3>' . $subtitle . '</h3>';
-                    echo '<img src="' . $gallery . '">';
+                        echo '<h3>' . $subtitle . '</h3>';
+                        echo '<img src="' . $gallery . '">';
 
-                    //display taxonomy-location and link to that taxonomy
-                    $location_terms = get_the_terms( $post->ID, 'location' );
-                    //var_dump($terms);
-                    if ( $location_terms ) {
-                        foreach ( $location_terms as $location_term ) {
-                            $output[] = '<a class="' . $location_term->slug . '" href="' . get_term_link( $location_term->slug, 'location' ) . '">' . $location_term->name . '</a>';
+                        //display taxonomy-location and link to that taxonomy
+                        $location_terms = get_the_terms( $post->ID, 'location' );
+                        //var_dump($terms);
+                        if ( $location_terms ) {
+                            foreach ( $location_terms as $location_term ) {
+                                $output[] = '<a class="' . $location_term->slug . '" href="' . get_term_link( $location_term->slug, 'location' ) . '">' . $location_term->name . '</a>';
 
+                            }
+                            echo '</br>';
+                            echo join( ',', $output );
                         }
-                        echo '</br>';
-                        echo join( ',', $output );
-                    }
 
-                    //display taxonomy-type and link to that taxonomy
-                    $type_terms = get_the_terms( $post->ID, 'type' );
-                    if ( $type_terms ) {
-                        foreach ( $type_terms as $type_term ) {
-                            $out[] = '<a class="' . $type_term->slug . '" href="' . get_term_link( $type_term->slug, 'type' ) . '">' . $type_term->name . '</a>';
+                        //display taxonomy-type and link to that taxonomy
+                        $type_terms = get_the_terms( $post->ID, 'type' );
+                        if ( $type_terms ) {
+                            foreach ( $type_terms as $type_term ) {
+                                $out[] = '<a class="' . $type_term->slug . '" href="' . get_term_link( $type_term->slug, 'type' ) . '">' . $type_term->name . '</a>';
 
+                            }
+                            echo '</br>';
+                            echo join( ',', $out );
                         }
-                        echo '</br>';
-                        echo join( ',', $out );
-                    }
+                        ?>
+                </div>
 
-                    if ( get_current_user_id() == $post->post_author || current_user_can( 'update_core' ) ) {
+                    <!--Form for editing post-->
+                    <div class="cf" id="cf">
+                        <h3>Edit your post</h3>
+                        <form action="../assets/js/real-estate.js" method="POST">
+                            <div>
+                                <label>Title</label>
+                                <input type="text" name="post_title"/>
+                            </div>
+                            <div>
+                                <label>Subtitle</label>
+                                <input type="text" name="subtitle"/>
+                            </div>
+                            <div>
+                                <label>Select location</label>
+                                <select><option>Location</option></select>
+                            </div>
+                            <div>
+                                <label>Select type of Real Estate</label>
+                                <select><option>Type</option></select>
+                            </div>
+                            <div>
+                                <button type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
 
-                        acf_form(array(
-                            'post_title' => true
-                        ));
-
-                    }
-
+                    <?php
                     // If comments are open or we have at least one comment, load up the comment template.
                     if ( comments_open() || get_comments_number() ) :
                         comments_template();
