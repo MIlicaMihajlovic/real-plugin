@@ -1,31 +1,40 @@
-//ajax call
+//Making ajax call
 
-//pozivamo akciju i passujemo vrednosti
-
-(function($) {
-    $(document).ready(function() {
-
-        //when user submit data, passing id
-        $('#cf').on('submit', function(event) {
+(function ($) {
+    //when user submit data, passing form id
+    $('#cf').on('submit', function (e) {
 
         //prevent to reload page
-        event.preventDefault();
+        e.preventDefault();
 
-        //url do back-a
+        //get data and put in variable
+        let post_title = $('#post_title').val();
+        //let subtitle = $('#subtitle').val();
 
         //submit data
-          $.ajax({
-            type: 'POST',
+        $.ajax({
             datatype: 'json',
-            url: '../../real-estate.php', //var ajaxurl = 'http://'+window.location.host+'/wp-admin/admin-ajax.php';
+            //object
+            url: real_estate.ajaxurl,
             data: {
-                action: 'prefix_cf'
+                //action from main php file
+                action: 'prefix_cf',
+                post_id: $(this).data('post-id'),
+                post_title: post_title,
+                //subtitle: subtitle
+            },
+            //receives response
+            success: function (data) {
+                //just checking display response
+                $('.site-main > div > h3').text(post_title);
 
+            },
+            error: function (error) {
+                console.log(error);
             }
         })
     })
-  })
-});
+})(jQuery);
 
 
 
