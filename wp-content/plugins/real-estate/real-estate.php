@@ -345,11 +345,14 @@ function real_estate_enqueue_scripts( $hook ) {
 	// enqueue script
 	wp_enqueue_script( 'real-estate', $script_url, array( 'jquery' ), false, true );
 
+	//create nonce
+	$nonce = wp_create_nonce('real_estate');
+
 	//define ajax url, all ajax requests through admin-ajax.php
 	$ajax_url = admin_url( 'admin-ajax.php' );
 
 	//define script
-	$script = array( 'ajaxurl' => $ajax_url );
+	$script = array( 'nonce' => $nonce, 'ajaxurl' => $ajax_url );
 
 	//localize script
 	wp_localize_script( 'real-estate', 'real_estate', $script );
@@ -361,6 +364,9 @@ add_action( 'wp_enqueue_scripts', 'real_estate_enqueue_scripts' );
 
 //Handler function for ajax
 function prefix_cf() {
+
+	//check wp ajax nonce
+	wp_verify_nonce( 'nonce', 'real-estate' );
 
 	//Check if request validate
 	$post_id     = isset( $_REQUEST['post_id'] ) ? intval( $_REQUEST['post_id'] ) : false;

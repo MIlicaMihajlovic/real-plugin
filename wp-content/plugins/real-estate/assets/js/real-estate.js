@@ -25,7 +25,8 @@
                 post_title: post_title,
                 subtitle: subtitle,
                 location: location,
-                type: type
+                type: type,
+                nonce: real_estate.nonce
             },
             //receives response
             success: function (response) {

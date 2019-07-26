@@ -103,6 +103,8 @@ get_header(); ?>
                                 </select>
                             </div>
                             <div>
+                                <!--call the function and create nonce-->
+	                            <?php wp_nonce_field( 'real_estate' ); ?>
                                 <button type="submit">Update</button>
                             </div>
                         </form>

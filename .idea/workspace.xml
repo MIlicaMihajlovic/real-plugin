@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/assets/js/real-estate.js" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/assets/js/real-estate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" afterDir="false" />
@@ -87,7 +85,7 @@
       <workItem from="1564038572676" duration="19575000" />
       <workItem from="1564059363209" duration="7644000" />
       <workItem from="1564125003501" duration="11837000" />
-      <workItem from="1564136923337" duration="12019000" />
+      <workItem from="1564136923337" duration="15322000" />
     </task>
     <servers />
   </component>
