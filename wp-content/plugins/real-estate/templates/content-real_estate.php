@@ -104,7 +104,7 @@ get_header(); ?>
                                     </select>
                                 </div>
                                 <div id="_wpnonce">
-<!--                                    <input type="hidden" name="sumbmitted" value="--><?php //echo get_current_user_id(); ?><!--">-->
+                                    <input type="hidden" name="sumbmitted" value="<?php echo get_current_user_id(); ?>">
                                     <!--call the function and create nonce-->
                                     <!--referer is on false because we are using ajax-->
                                     <?php wp_nonce_field( 'update-post_'. get_the_ID(), 'wpnonce', false ); ?>
@@ -113,7 +113,7 @@ get_header(); ?>
                             </form>
                         </div>
 
-                    <?php endif; ?>
+<!--                    --><?php //endif; ?>
 
 					<?php
 					// If comments are open or we have at least one comment, load up the comment template.

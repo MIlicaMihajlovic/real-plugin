@@ -365,6 +365,9 @@ function prefix_cf() {
 		// check nonce
 		check_ajax_referer( 'update-post_' . $post_id );
 
+		//current_user_can
+		
+
 		$post_title = isset( $_REQUEST['post_title'] ) ? sanitize_text_field( $_REQUEST['post_title'] ) : false;
 
 		$subtitle = isset( $_REQUEST['subtitle'] ) ? sanitize_text_field( $_REQUEST['subtitle'] ) : false;
@@ -421,15 +424,7 @@ add_action( 'wp_ajax_nopriv_prefix_cf', 'prefix_cf' );
 add_action( 'wp_ajax_prefix_cf', 'prefix_cf' );
 
 
-//check if current user can update post
-//function check_current_user_form() {
-//	if() {
-//
-//	}
-//	 return $content;
-//}
 
-add_filter('content', 'check_current_user_form');
 
 
 
