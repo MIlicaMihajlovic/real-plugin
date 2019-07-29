@@ -345,14 +345,8 @@ function real_estate_enqueue_scripts( $hook ) {
 	// enqueue script
 	wp_enqueue_script( 'real-estate', $script_url, array( 'jquery' ), false, true );
 
-	//create nonce
-	$nonce = wp_create_nonce('real_estate');
-
-	//define ajax url, all ajax requests through admin-ajax.php
-	$ajax_url = admin_url( 'admin-ajax.php' );
-
 	//define script
-	$script = array( 'nonce' => $nonce, 'ajaxurl' => $ajax_url );
+	$script = array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) );
 
 	//localize script
 	wp_localize_script( 'real-estate', 'real_estate', $script );
@@ -365,59 +359,59 @@ add_action( 'wp_enqueue_scripts', 'real_estate_enqueue_scripts' );
 //Handler function for ajax
 function prefix_cf() {
 
-	//check wp ajax nonce
-	wp_verify_nonce( 'nonce', 'real-estate' );
+		//Check if request validate
+		$post_id = isset( $_REQUEST['post_id'] ) ? intval( $_REQUEST['post_id'] ) : false;
 
-	//Check if request validate
-	$post_id     = isset( $_REQUEST['post_id'] ) ? intval( $_REQUEST['post_id'] ) : false;
-	$post_title  = isset( $_REQUEST['post_title'] ) ? sanitize_text_field( $_REQUEST['post_title'] ) : false;
+		// check nonce
+		check_ajax_referer( 'update-post_' . $post_id );
 
-	$subtitle = isset( $_REQUEST['subtitle'] ) ? sanitize_text_field( $_REQUEST['subtitle'] ) : false;
+		$post_title = isset( $_REQUEST['post_title'] ) ? sanitize_text_field( $_REQUEST['post_title'] ) : false;
 
-	//Get request
-	$location_id = isset( $_REQUEST['location'] ) ? intval( $_REQUEST['location'] ) : false;
-	$type_id     = isset( $_REQUEST['type'] ) ? intval( $_REQUEST['type'] ) : false;
-	//Get term id
-	$location = get_term( $location_id, 'location' );
-	$type     = get_term( $type_id, 'type' );
+		$subtitle = isset( $_REQUEST['subtitle'] ) ? sanitize_text_field( $_REQUEST['subtitle'] ) : false;
 
-	//If is not true give back error, always pass arguments, check if taxonomy not instance
-	if ( ! $post_id || ! $post_title || ! $location instanceof WP_Term || ! $type instanceof WP_Term ) {
-		wp_send_json_error( null, 400 );
-	}
+		//Get request
+		$location_id = isset( $_REQUEST['location'] ) ? intval( $_REQUEST['location'] ) : false;
+		$type_id     = isset( $_REQUEST['type'] ) ? intval( $_REQUEST['type'] ) : false;
+		//Get term id
+		$location = get_term( $location_id, 'location' );
+		$type     = get_term( $type_id, 'type' );
 
+		//If is not true give back error, always pass arguments, check if taxonomy not instance
+		if ( ! $post_id || ! $post_title || ! $location instanceof WP_Term || ! $type instanceof WP_Term ) {
+			wp_send_json_error( null, 400 );
+		}
 
-	//Updating post
-	$result = wp_update_post( [
-		'ID'         => $post_id,
-		'post_title' => $post_title,
-		//Update meta field, acf
-		'meta_input' => [
-			'subtitle' => $subtitle,
-			'location' => $location->term_id,
-			'type' => $type->term_id
-		],
-		//Update custom taxonomy term
-		'tax_input'  => [
-			'location' => [ $location->term_id ],
-			'type'     =>  [ $type->term_id ]
-		]
-	] );
-
-
-	//If result true send success, else error
-	if ( $result ) {
-		//using wp_send_json_success you don't need exit and parse response
-		wp_send_json_success( [
+		//Updating post
+		$result = wp_update_post( [
+			'ID'         => $post_id,
 			'post_title' => $post_title,
-			'subtitle'   => $subtitle,
-			//Update link to taxonomy
-			'location_link' => '<a class="' . $location->slug . '" href="' . get_term_link( $location->slug, 'location' ) . '">' . $location->name . '</a>',
-			'type_link' => '<a class="' . $type->slug . '" href="' . get_term_link( $type->slug, 'type' ) . '">' . $type->name . '</a>'
+			//Update meta field, acf
+			'meta_input' => [
+				'subtitle' => $subtitle,
+				'location' => $location->term_id,
+				'type'     => $type->term_id
+			],
+			//Update custom taxonomy term
+			'tax_input'  => [
+				'location' => [ $location->term_id ],
+				'type'     => [ $type->term_id ]
+			]
 		] );
-	} else {
-		wp_send_json_error( null, 400 );
-	}
+
+
+		//If result true send success, else error
+		if ( $result ) {
+			//using wp_send_json_success you don't need exit and parse response
+			wp_send_json_success( [
+				'post_title'    => $post_title,
+				'subtitle'      => $subtitle,
+				//Update link to taxonomy
+				'location_link' => '<a class="' . $location->slug . '" href="' . get_term_link( $location->slug, 'location' ) . '">' . $location->name . '</a>',
+				'type_link'     => '<a class="' . $type->slug . '" href="' . get_term_link( $type->slug, 'type' ) . '">' . $type->name . '</a>'
+			] );
+		} else {
+			wp_send_json_error( null, 400 );
+		}
 
 }
 
@@ -425,6 +419,17 @@ function prefix_cf() {
 add_action( 'wp_ajax_nopriv_prefix_cf', 'prefix_cf' );
 //hook for logged in user
 add_action( 'wp_ajax_prefix_cf', 'prefix_cf' );
+
+
+//check if current user can update post
+//function check_current_user_form() {
+//	if() {
+//
+//	}
+//	 return $content;
+//}
+
+add_filter('content', 'check_current_user_form');
 
 
 

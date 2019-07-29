@@ -60,55 +60,60 @@ get_header(); ?>
 						<?php endif; ?>
                     </div>
 
+<!--                    --><?php //if ( get_current_user_id() == $post->post_author || current_user_can('update_core') ) : ?>
 
-                    <!--Form for editing post-->
-                    <div>
-                        <h3>Edit your post</h3>
-                        <!---->
-                        <form class="cf" id="cf" data-post-id="<?php the_ID(); ?>">
-                            <div>
-                                <label>Title</label>
-                                <input type="text" id="post_title" name="post_title" value="<?php the_title() ?>"/>
-                            </div>
-                            <div>
-                                <label>Subtitle</label>
-                                <input type="text" id="subtitle" name="subtitle"
-                                       value="<?php the_field( 'subtitle' ); ?>"/>
-                            </div>
-                            <div class="taxonomy-location">
-                                <!--get_terms-->
-                                <label>Select location</label>
-								<?php $loc_terms = get_terms( array(
-									'taxonomy'   => 'location',
-									'hide_empty' => false,
-									'fields'     => 'all'
-								) ); ?>
-                                <select id="taxonomy-location">
-									<?php foreach ( $loc_terms as $loc_term ) { ?>
-                                        <option value="<?php echo $loc_term->term_id ?>" <?php echo $loc_term->term_id === $location_term->term_id ? 'selected' : '' ?>> <?php echo $loc_term->name; ?> </option>
-									<?php } ?>
-                                </select>
-                            </div>
-                            <div class="taxonomy-type">
-                                <label>Select type of Real Estate</label>
-								<?php $typ_terms = get_terms( array(
-									'taxonomy'   => 'type',
-									'hide_empty' => false,
-									'fields'     => 'all'
-								) ); ?>
-                                <select id="taxonomy-type">
-									<?php foreach ( $typ_terms as $typ_term ) { ?>
-                                        <option value="<?php echo $typ_term->term_id ?>" <?php echo $typ_term->term_id === $type_term->term_id ? 'selected' : '' ?>> <?php echo $typ_term->name; ?> </option>
-									<?php } ?>
-                                </select>
-                            </div>
-                            <div>
-                                <!--call the function and create nonce-->
-	                            <?php wp_nonce_field( 'real_estate' ); ?>
-                                <button type="submit">Update</button>
-                            </div>
-                        </form>
-                    </div>
+                        <!--Form for editing post-->
+                        <div>
+                            <h3>Edit your post</h3>
+                            <!---->
+                            <form class="cf" id="cf" data-post-id="<?php the_ID(); ?>">
+                                <div>
+                                    <label>Title</label>
+                                    <input type="text" id="post_title" name="post_title" value="<?php the_title() ?>"/>
+                                </div>
+                                <div>
+                                    <label>Subtitle</label>
+                                    <input type="text" id="subtitle" name="subtitle"
+                                           value="<?php the_field( 'subtitle' ); ?>"/>
+                                </div>
+                                <div class="taxonomy-location">
+                                    <!--get_terms-->
+                                    <label>Select location</label>
+                                    <?php $loc_terms = get_terms( array(
+                                        'taxonomy'   => 'location',
+                                        'hide_empty' => false,
+                                        'fields'     => 'all'
+                                    ) ); ?>
+                                    <select id="taxonomy-location">
+                                        <?php foreach ( $loc_terms as $loc_term ) { ?>
+                                            <option value="<?php echo $loc_term->term_id ?>" <?php echo $loc_term->term_id === $location_term->term_id ? 'selected' : '' ?>> <?php echo $loc_term->name; ?> </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="taxonomy-type">
+                                    <label>Select type of Real Estate</label>
+                                    <?php $typ_terms = get_terms( array(
+                                        'taxonomy'   => 'type',
+                                        'hide_empty' => false,
+                                        'fields'     => 'all'
+                                    ) ); ?>
+                                    <select id="taxonomy-type">
+                                        <?php foreach ( $typ_terms as $typ_term ) { ?>
+                                            <option value="<?php echo $typ_term->term_id ?>" <?php echo $typ_term->term_id === $type_term->term_id ? 'selected' : '' ?>> <?php echo $typ_term->name; ?> </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div id="_wpnonce">
+<!--                                    <input type="hidden" name="sumbmitted" value="--><?php //echo get_current_user_id(); ?><!--">-->
+                                    <!--call the function and create nonce-->
+                                    <!--referer is on false because we are using ajax-->
+                                    <?php wp_nonce_field( 'update-post_'. get_the_ID(), 'wpnonce', false ); ?>
+                                    <button type="submit">Update</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    <?php endif; ?>
 
 					<?php
 					// If comments are open or we have at least one comment, load up the comment template.

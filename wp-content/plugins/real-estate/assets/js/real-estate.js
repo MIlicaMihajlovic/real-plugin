@@ -13,6 +13,7 @@
         let location = $('#taxonomy-location').val();
         let type = $('#taxonomy-type').val();
 
+
         //submit data
         $.ajax({
             datatype: 'json',
@@ -26,7 +27,7 @@
                 subtitle: subtitle,
                 location: location,
                 type: type,
-                nonce: real_estate.nonce
+                _wpnonce: $('#wpnonce').val()
             },
             //receives response
             success: function (response) {

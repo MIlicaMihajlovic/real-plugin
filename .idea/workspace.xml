@@ -28,7 +28,6 @@
     <joomlaConfigPath />
     <joomlaPath />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="realplugin" id="a6a58ac7-b558-4a52-8949-ede9367a2789" name="realplugin" />
@@ -85,7 +84,8 @@
       <workItem from="1564038572676" duration="19575000" />
       <workItem from="1564059363209" duration="7644000" />
       <workItem from="1564125003501" duration="11837000" />
-      <workItem from="1564136923337" duration="15322000" />
+      <workItem from="1564136923337" duration="15372000" />
+      <workItem from="1564384077834" duration="15331000" />
     </task>
     <servers />
   </component>
