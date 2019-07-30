@@ -27,7 +27,8 @@
                 subtitle: subtitle,
                 location: location,
                 type: type,
-                _wpnonce: $('#wpnonce').val()
+                _wpnonce: $('#wpnonce').val(),
+                userId: $('#check-user').val()
             },
             //receives response
             success: function (response) {

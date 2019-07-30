@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/assets/js/real-estate.js" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/assets/js/real-estate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/content-real_estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/content-real_estate.php" afterDir="false" />
     </list>
@@ -27,7 +28,7 @@
     <joomlaConfigPath />
     <joomlaPath />
   </component>
-  <component name="PhpDebugGeneral" hide_empty_superglobals="false" />
+  <component name="PhpDebugGeneral" hide_empty_superglobals="false" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="realplugin" id="a6a58ac7-b558-4a52-8949-ede9367a2789" name="realplugin" />
@@ -86,7 +87,9 @@
       <workItem from="1564125003501" duration="11837000" />
       <workItem from="1564136923337" duration="15372000" />
       <workItem from="1564384077834" duration="21709000" />
-      <workItem from="1564408117357" duration="3431000" />
+      <workItem from="1564408117357" duration="3912000" />
+      <workItem from="1564470351887" duration="7036000" />
+      <workItem from="1564477601441" duration="4885000" />
     </task>
     <servers />
   </component>

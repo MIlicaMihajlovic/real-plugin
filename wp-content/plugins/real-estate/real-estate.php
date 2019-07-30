@@ -365,8 +365,14 @@ function prefix_cf() {
 		// check nonce
 		check_ajax_referer( 'update-post_' . $post_id );
 
-		//current_user_can
-		
+		//current_user_can update post
+		$userId = isset($_REQUEST['userId']) ? intval($_REQUEST['userId']) : false;
+
+		//if it's not author and it's not administrator return
+		//using user_can, because not accept string variable
+		if( $userId !== get_post()->post_author && ! user_can( $userId, 'update_core')) {
+			wp_send_json_error( null, 400 );
+		}
 
 		$post_title = isset( $_REQUEST['post_title'] ) ? sanitize_text_field( $_REQUEST['post_title'] ) : false;
 
@@ -375,6 +381,7 @@ function prefix_cf() {
 		//Get request
 		$location_id = isset( $_REQUEST['location'] ) ? intval( $_REQUEST['location'] ) : false;
 		$type_id     = isset( $_REQUEST['type'] ) ? intval( $_REQUEST['type'] ) : false;
+
 		//Get term id
 		$location = get_term( $location_id, 'location' );
 		$type     = get_term( $type_id, 'type' );
@@ -425,7 +432,10 @@ add_action( 'wp_ajax_prefix_cf', 'prefix_cf' );
 
 
 
+/*
+Treci zadatak administartor updatuje post, za autora posta vraca gresku, validacija na back-u nije zavrsena
 
+*/
 
 
 
