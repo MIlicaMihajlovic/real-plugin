@@ -434,13 +434,53 @@ add_action( 'wp_ajax_nopriv_prefix_cf', 'prefix_cf' );
 add_action( 'wp_ajax_prefix_cf', 'prefix_cf' );
 
 
-//Hook to wp search, filter runs before query gets executed
-//$pieces string[] pieces of query
-// WP_Query::get_posts() – Retrieves an array of posts based on query variables.
-//function real_estate_search($pieces, $this) {
-//
-//	return $pieces;
-//}
-//
-//add_filter('posts_clauses_request', 'real_estate_search', 10, 2);
+//Advanced search
 
+/**
+ * @param $query
+ * @param WP_Query $wp_query
+ *
+ * @return mixed
+ */
+function customSearchClause($query, $wp_query)
+{
+	//if it's not query return, always has to return something
+	if ( ! $wp_query->is_search() ) {
+		return $query;
+	}
+
+	//talking to database, using global object
+	global $wpdb;
+
+	//search term
+	$s = $wp_query->get('s');
+
+//	$args =  [
+//		'post_type' => 'real_estate'
+//	];
+
+	//join postmeta
+	$query['join'] = "INNER JOIN {$wpdb->postmeta} ON ({$wpdb->posts}.ID = {$wpdb->postmeta}.post_id)";
+
+	//join terms for taxonomy search
+	$query['join'] = "INNER JOIN {$wpdb->term_relationships} 
+						ON {$wpdb->posts}.ID = {$wpdb->term_relationships}.object_id
+						INNER JOIN {$wpdb->term_taxonomy}
+						ON {$wpdb->term_relationships}.term_taxonomy_id = {$wpdb->term_taxonomy}.term_taxonomy_id
+						INNER JOIN {$wpdb->term_relationships}
+						ON {$wpdb->terms}.term_id = {$wpdb->term_relationship}.term_taxonomy_id
+						
+	";
+
+	//where search term
+	$query['where'] = "AND ((  {$wpdb->posts}.post_type IN ('real_estate')
+							AND	( {$wpdb->posts}.post_title LIKE '%{$s}%' )
+							OR ( {$wpdb->postmeta}.meta_key = 'subtitle' AND {$wpdb->postmeta}.meta_value LIKE '%{$s}%' )
+							OR ( {$wpdb->terms}.name LIKE '%{$s}%' )
+	))";
+
+
+	return $query;
+}
+
+add_filter('posts_clauses_request', 'customSearchClause', 10, 2);

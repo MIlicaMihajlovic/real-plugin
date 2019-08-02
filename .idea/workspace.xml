@@ -4,7 +4,7 @@
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/content-real_estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/content-real_estate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real_estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real_estate.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +91,7 @@
       <workItem from="1564477601441" duration="5505000" />
       <workItem from="1564647607919" duration="7678000" />
       <workItem from="1564656440520" duration="3134000" />
-      <workItem from="1564729740960" duration="352000" />
+      <workItem from="1564729740960" duration="24277000" />
     </task>
     <servers />
   </component>
