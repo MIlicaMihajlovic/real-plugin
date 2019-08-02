@@ -60,7 +60,7 @@ get_header(); ?>
 						<?php endif; ?>
                     </div>
 
-<!--                    --><?php //if ( get_current_user_id() == $post->post_author || current_user_can('update_core') ) : ?>
+                    <?php if ( get_current_user_id() == $post->post_author || current_user_can('update_core') ) : ?>
 
                         <!--Form for editing post-->
                         <div>
@@ -113,7 +113,7 @@ get_header(); ?>
                             </form>
                         </div>
 
-<!--                    --><?php //endif; ?>
+                    <?php endif; ?>
 
 					<?php
 					// If comments are open or we have at least one comment, load up the comment template.

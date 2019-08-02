@@ -369,8 +369,11 @@ function prefix_cf() {
 		$userId = isset($_REQUEST['userId']) ? intval($_REQUEST['userId']) : false;
 
 		//if it's not author and it's not administrator return
-		//using user_can, because not accept string variable
-		if( $userId !== get_post()->post_author && ! user_can( $userId, 'update_core')) {
+		//use user_can because of ajax
+	    $post = get_post( $post_id );
+		$author_id = $post->post_author;
+
+		if( $userId != $author_id && ! user_can( $userId, 'update_core')) {
 			wp_send_json_error( null, 400 );
 		}
 
@@ -431,12 +434,13 @@ add_action( 'wp_ajax_nopriv_prefix_cf', 'prefix_cf' );
 add_action( 'wp_ajax_prefix_cf', 'prefix_cf' );
 
 
-
-/*
-Treci zadatak administartor updatuje post, za autora posta vraca gresku, validacija na back-u nije zavrsena
-
-*/
-
-
-
+//Hook to wp search, filter runs before query gets executed
+//$pieces string[] pieces of query
+// WP_Query::get_posts() – Retrieves an array of posts based on query variables.
+//function real_estate_search($pieces, $this) {
+//
+//	return $pieces;
+//}
+//
+//add_filter('posts_clauses_request', 'real_estate_search', 10, 2);
 
