@@ -117,7 +117,7 @@ function create_real_taxonomies() {
 		'show_admin_column'     => true,
 		'update_count_callback' => '_update_post_term_count',
 		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'estates' )
+		'rewrite'               => array( 'slug' => 'estates')
 	);
 
 	register_taxonomy( 'type', array( 'real_estate' ), $args );
@@ -326,7 +326,10 @@ function real_template_loader( $template ) {
 		$file = 'content-real_estate.php';
 	elseif ( is_tax() ):
 		$file = 'archive-real_estate.php';
+	elseif ( is_search() ):
+		$file = 'search-real_estate.php';
 	endif;
+
 	if ( file_exists( real_locate_template( $file ) ) ) :
 		$template = real_locate_template( $file );
 	endif;
@@ -449,35 +452,40 @@ function customSearchClause($query, $wp_query)
 		return $query;
 	}
 
-	//talking to database, using global object
+	//talking to database
 	global $wpdb;
 
 	//search term
 	$s = $wp_query->get('s');
 
-//	$args =  [
-//		'post_type' => 'real_estate'
-//	];
-
 	//join postmeta
-	$query['join'] = "INNER JOIN {$wpdb->postmeta} ON ({$wpdb->posts}.ID = {$wpdb->postmeta}.post_id)";
+	$query['join'] = " INNER JOIN {$wpdb->postmeta} ON ({$wpdb->posts}.ID = {$wpdb->postmeta}.post_id) ";
 
-	//join terms for taxonomy search
-	$query['join'] = "INNER JOIN {$wpdb->term_relationships} 
+	//join terms for taxonomy search, concat with statement above
+	$query['join'] .= " INNER JOIN {$wpdb->term_relationships} 
 						ON {$wpdb->posts}.ID = {$wpdb->term_relationships}.object_id
 						INNER JOIN {$wpdb->term_taxonomy}
 						ON {$wpdb->term_relationships}.term_taxonomy_id = {$wpdb->term_taxonomy}.term_taxonomy_id
-						INNER JOIN {$wpdb->term_relationships}
-						ON {$wpdb->terms}.term_id = {$wpdb->term_relationship}.term_taxonomy_id
-						
-	";
+						INNER JOIN {$wpdb->terms}
+						ON {$wpdb->term_taxonomy}.term_id = {$wpdb->terms}.term_id ";
 
 	//where search term
-	$query['where'] = "AND ((  {$wpdb->posts}.post_type IN ('real_estate')
-							AND	( {$wpdb->posts}.post_title LIKE '%{$s}%' )
-							OR ( {$wpdb->postmeta}.meta_key = 'subtitle' AND {$wpdb->postmeta}.meta_value LIKE '%{$s}%' )
-							OR ( {$wpdb->terms}.name LIKE '%{$s}%' )
-	))";
+	$query['where'] = $wpdb->prepare( " AND ({$wpdb->posts}.post_type = %s 
+						AND	({$wpdb->posts}.post_title LIKE %s
+							OR ({$wpdb->postmeta}.meta_key = 'subtitle' AND {$wpdb->postmeta}.meta_value LIKE %s)
+							OR {$wpdb->terms}.name LIKE %s)) ",
+		[
+			"real_estate",
+			"%$s%",
+			"%$s%",
+			"%$s%"
+		]);
+
+	//order by
+	$query['orderby'] = " {$wpdb->posts}.post_date DESC ";
+
+	//remove duplicates, group by post ID
+	$query['groupby'] = "{$wpdb->posts}.ID";
 
 
 	return $query;

@@ -4,7 +4,6 @@
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real_estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/templates/archive-real_estate.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +26,6 @@
     <joomlaConfigPath />
     <joomlaPath />
   </component>
-  <component name="PhpDebugGeneral" break_at_first_line="true" />
   <component name="PhpServers">
     <servers>
       <server host="realplugin" id="a6a58ac7-b558-4a52-8949-ede9367a2789" name="realplugin" />
@@ -38,14 +36,14 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wp-content/plugins/real-estate/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="settings.php.frameworks" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -91,7 +89,8 @@
       <workItem from="1564477601441" duration="5505000" />
       <workItem from="1564647607919" duration="7678000" />
       <workItem from="1564656440520" duration="3134000" />
-      <workItem from="1564729740960" duration="24277000" />
+      <workItem from="1564729740960" duration="24532000" />
+      <workItem from="1564989302724" duration="14884000" />
     </task>
     <servers />
   </component>
@@ -113,5 +112,23 @@
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>C:\wamp64\www\realplugin</wordpressPath>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="php-exception">
+          <properties name="Exception" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+        <breakpoint enabled="true" type="php-exception">
+          <properties name="Warning" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+        <breakpoint enabled="true" type="php-exception">
+          <properties name="Notice" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
