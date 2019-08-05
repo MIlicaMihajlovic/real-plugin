@@ -328,6 +328,8 @@ function real_template_loader( $template ) {
 		$file = 'archive-real_estate.php';
 	elseif ( is_search() ):
 		$file = 'search-real_estate.php';
+	elseif ( get_page_template_slug() === 'custom-page-template.php' ):
+		$file = 'page-custom-template.php';
 	endif;
 
 	if ( file_exists( real_locate_template( $file ) ) ) :
