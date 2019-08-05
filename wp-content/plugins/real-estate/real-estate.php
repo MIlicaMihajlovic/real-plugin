@@ -49,7 +49,7 @@ function create_real_cpt() {
 		'menu_position'      => null,
 		'supports'           => array( 'title', 'image', 'author', 'thumbnail', 'revisions', 'custom-fields' ),
 		'taxonomies'         => array( 'location', 'type' ),
-		'rewrite'            => array( 'slug' => 'estates' )
+		'rewrite'            => true
 	);
 
 	register_post_type( 'real_estate', $args );
