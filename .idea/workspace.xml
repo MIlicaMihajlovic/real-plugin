@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/twentyseventeen/custom-page-template.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/real-estate/real-estate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentyseventeen/custom-page-template.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/twentyseventeen/custom-page-template.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentyseventeen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/twentyseventeen/functions.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +28,6 @@
     <joomlaConfigPath />
     <joomlaPath />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="realplugin" id="a6a58ac7-b558-4a52-8949-ede9367a2789" name="realplugin" />
@@ -95,7 +95,10 @@
       <workItem from="1564647607919" duration="7678000" />
       <workItem from="1564656440520" duration="3134000" />
       <workItem from="1564729740960" duration="24532000" />
-      <workItem from="1564989302724" duration="24901000" />
+      <workItem from="1564989302724" duration="25204000" />
+      <workItem from="1565075546192" duration="21761000" />
+      <workItem from="1565161670984" duration="21503000" />
+      <workItem from="1565247754927" duration="1175000" />
     </task>
     <servers />
   </component>

@@ -494,3 +494,5 @@ function customSearchClause($query, $wp_query)
 }
 
 add_filter('posts_clauses_request', 'customSearchClause', 10, 2);
+
+
