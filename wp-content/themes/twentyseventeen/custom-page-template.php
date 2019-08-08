@@ -259,7 +259,7 @@ get_footer();
     }
 </style>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuRmPJXwqsBDeoK9d_prSysffhYZir5lQ"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key="></script>
 <script type="text/javascript">
     (function($) {
 

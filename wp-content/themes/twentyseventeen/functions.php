@@ -665,10 +665,10 @@ require get_parent_theme_file_path( '/inc/icon-functions.php' );
 
 
 //Register Api key
-function my_acf_init() {
-
-	acf_update_setting('google_api_key', 'AIzaSyAuRmPJXwqsBDeoK9d_prSysffhYZir5lQ');
-}
-
-add_action('acf/init', 'my_acf_init');
+//function my_acf_init() {
+//
+//	acf_update_setting('google_api_key', '');
+//}
+//
+//add_action('acf/init', 'my_acf_init');
 
