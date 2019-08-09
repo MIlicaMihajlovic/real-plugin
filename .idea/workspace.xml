@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="82577820-88cc-4c49-a812-bd65d1d30fc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentyseventeen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/twentyseventeen/functions.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +95,7 @@
       <workItem from="1564989302724" duration="25204000" />
       <workItem from="1565075546192" duration="21761000" />
       <workItem from="1565161670984" duration="21503000" />
-      <workItem from="1565247754927" duration="2592000" />
+      <workItem from="1565247754927" duration="3890000" />
     </task>
     <servers />
   </component>
